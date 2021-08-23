@@ -23,7 +23,7 @@ class Director(models.Model):
 
 
 
-class Film (models.Model):
+class Film(models.Model):
     title = models.CharField(max_length=80)
     release_date = models.DateTimeField(auto_now_add=False,default=datetime.date.today)
     created_in_countries = models.ForeignKey(Country,related_name='created_in', on_delete=models.PROTECT)
@@ -33,7 +33,9 @@ class Film (models.Model):
     def __str__(self):
         return self.title
 
-
-
+class Poster(models.Model):
+    image = models.ImageField()
+    explanation_img = models.CharField(max_length=80)
+    film = models.OneToOneField(Film,on_delete=models.PROTECT)
 
 

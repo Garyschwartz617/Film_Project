@@ -5,9 +5,10 @@
 
 
 <h4>{{title}}</h4>
-<form method='post'>
+<form method='post' enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
+    {{poster_form.as_p}}
 <button class='btn btn-success' type="submit">Save</button>
 </form>
 

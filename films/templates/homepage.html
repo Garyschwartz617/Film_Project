@@ -6,10 +6,11 @@ All Films
 
 {% block content %}
 <h2>This is the homepage</h2>
+{% if user.is_authenticated %}
 <div class= 'row'>
 {% for film in films %}
 <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="{{ film.poster.image.url }}" class="card-img-top" alt="{{ film.poster.explanation_img }}">
     <div class="card-body">
       <h5 class="card-title">{{film.title}}</h5>
       <p class="card-text">Directed by{% for direct in film.director.all %} {{direct.first_name}} {{direct.last_name}} {%endfor%}</p>
@@ -17,12 +18,14 @@ All Films
       <p class="card-text">Country {{film.created_in_countries}}</p>
 
       <hr>
+      {% if user.is_superuser %}
       <a href="{% url 'update_director' film.director.first.id %}" class="btn btn-warning">Update Director</a>
       <hr>
       <a href="{% url 'update_film' film.id %}" class="btn btn-danger">Update Film</a>
-
+      {% endif %}
     </div>
   </div>
 {% endfor %}
+{% endif %}
 </div>
 {% endblock %}
