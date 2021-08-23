@@ -43,4 +43,18 @@ class CategoryCreateView(CreateView):
     fields = '__all__'
     # form_class = AnimalForm
     template_name = 'add/add.html'
-    success_url = reverse_lazy('home')    
+    success_url = reverse_lazy('home')   
+
+class FilmUpdateView(UpdateView):
+    model = Film
+    fields = '__all__'
+    # form_class = AnimalForm
+    template_name = 'add/add.html'
+    success_url = reverse_lazy('home')
+
+class DirectorUpdateView(UpdateView):
+    model = Director
+    fields = '__all__'
+    # form_class = AnimalForm
+    template_name = 'add/add.html'
+    success_url = reverse_lazy('home')         

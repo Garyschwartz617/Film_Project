@@ -10,6 +10,7 @@ urlpatterns = [
     path('add_director', views.DirectorCreateView.as_view(), name = 'create_director'),
     path('add_country', views.CountryCreateView.as_view(), name = 'create_country'),
     path('add_category', views.CategoryCreateView.as_view(), name = 'create_category'),
-
+    path('update_film/<int:pk>', views.FilmUpdateView.as_view(), name = 'update_film'),
+    path('update_director/<int:pk>', views.DirectorUpdateView.as_view(), name = 'update_director'),
 
 ]

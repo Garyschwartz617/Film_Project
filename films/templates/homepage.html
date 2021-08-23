@@ -13,7 +13,14 @@ All Films
     <div class="card-body">
       <h5 class="card-title">{{film.title}}</h5>
       <p class="card-text">Directed by{% for direct in film.director.all %} {{direct.first_name}} {{direct.last_name}} {%endfor%}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <p class="card-text">Date {{film.release_date}}</p>
+      <p class="card-text">Country {{film.created_in_countries}}</p>
+
+      <hr>
+      <a href="{% url 'update_director' film.director.first.id %}" class="btn btn-warning">Update Director</a>
+      <hr>
+      <a href="{% url 'update_film' film.id %}" class="btn btn-danger">Update Film</a>
+
     </div>
   </div>
 {% endfor %}
