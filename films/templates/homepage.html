@@ -16,16 +16,27 @@ All Films
       <p class="card-text">Directed by{% for direct in film.director.all %} {{direct.first_name}} {{direct.last_name}} {%endfor%}</p>
       <p class="card-text">Date {{film.release_date}}</p>
       <p class="card-text">Country {{film.created_in_countries}}</p>
+      <p><a href="{% url 'film_detail' film.id%}">More Information</a></p>
 
       <hr>
       {% if user.is_superuser %}
       <a href="{% url 'update_director' film.director.first.id %}" class="btn btn-warning">Update Director</a>
       <hr>
-      <a href="{% url 'update_film' film.id %}" class="btn btn-danger">Update Film</a>
+      <a href="{% url 'update_film' film.id %}" class="btn btn-warning">Update Film</a>
+      <a href="{% url 'delete_film' film.id %}" class="btn btn-danger">Delete Film</a>
+
       {% endif %}
     </div>
   </div>
 {% endfor %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endif %}
 </div>
 {% endblock %}

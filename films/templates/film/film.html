@@ -1,0 +1,28 @@
+{% extends 'partials/base.html'%}
+
+
+
+{% block content %}
+<h2>This is the Movie</h2>
+
+<div class='row'>
+
+
+    <ul class="list-group">
+        <li class="list-group-item">Name: {{object.title}} </li>
+        <li class="list-group-item">Directed by: {% for direct in object.director.all %} {{direct.first_name}} {{direct.last_name}} {%endfor%}</li>
+        <li class="list-group-item">Created in: {{object.created_in_countries}}</li>
+        <li class="list-group-item">Availible in: {% for country in object.available_in_countries.all %} {{country.name}} {%endfor%}</li>
+        <li class="list-group-item">Category: {% for category in object.category.all %} {{category.name}} {%endfor%}</li>
+        <li class="list-group-item">Released: {{object.release_date}}</li>
+        <li class="list-group-item">Comments:  {% for comment in object.commentary_set.all %} <p>Author: {{comment.author}} </p><p>Comment: {{comment.comment}} </p><p>Star: {{comment.stars}}</p>{%endfor%}</li>
+        <p><a href="{% url 'comment_film' %}"> Please Leave a comment</a></p>
+
+       
+        
+      </ul>
+   
+</div>
+
+
+{% endblock %}

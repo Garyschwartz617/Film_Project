@@ -1,4 +1,4 @@
-from .models import Poster,Film
+from .models import Poster,Film, Commentary
 from django import forms
 
 
@@ -12,3 +12,10 @@ class PosterForm(forms.ModelForm):
     class Meta:
         model = Poster
         fields = ('image','explanation_img')
+
+class CommentaryForm(forms.ModelForm):
+    class Meta:
+        model = Commentary
+        fields = ('stars','comment','film')        
+
+      

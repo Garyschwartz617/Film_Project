@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -36,6 +37,14 @@ class Film(models.Model):
 class Poster(models.Model):
     image = models.ImageField()
     explanation_img = models.CharField(max_length=80)
-    film = models.OneToOneField(Film,on_delete=models.PROTECT)
+    film = models.OneToOneField(Film,on_delete=models.CASCADE)
+
+class Commentary(models.Model):
+        stars = models.CharField(max_length=1)
+        comment = models.CharField(max_length=500)
+        film = models.ForeignKey(Film, on_delete=models.CASCADE)
+        author = models.ForeignKey(User,on_delete=models.CASCADE)
+
+
 
 
