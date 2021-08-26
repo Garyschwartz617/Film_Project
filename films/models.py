@@ -35,7 +35,7 @@ class Film(models.Model):
         return self.title
 
 class Poster(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(upload_to='posts/')
     explanation_img = models.CharField(max_length=80)
     film = models.OneToOneField(Film,on_delete=models.CASCADE)
 

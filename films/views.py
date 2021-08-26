@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from .models import *
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
-from .forms import MyFilmForm, PosterForm, CommentaryForm
+from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
@@ -46,8 +46,22 @@ class CommentCreateView(CreateView):
         comment.save()
         return super().form_valid(form)
 
+class CommentCreate2View(CreateView):
+    form_class = Commentary2Form
+    template_name = 'film/addComment2.html'
+    success_url = reverse_lazy('home')
+    
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.author = self.request.user
+        comment.film_id = self.kwargs['pk']
+        comment.save()
+        return super().form_valid(form)
 
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['film'] = get_object_or_404(Film, id = self.kwargs['pk'])
+        return context
 
 
 # @login_required

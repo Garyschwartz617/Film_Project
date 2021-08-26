@@ -18,4 +18,8 @@ class CommentaryForm(forms.ModelForm):
         model = Commentary
         fields = ('stars','comment','film')        
 
+class Commentary2Form(forms.ModelForm):
+    class Meta:
+        model = Commentary
+        fields = ('stars','comment')        
       
